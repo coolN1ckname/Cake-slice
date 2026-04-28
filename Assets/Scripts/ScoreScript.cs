@@ -22,8 +22,8 @@ public class ScoreScript : MonoBehaviour
 
     private void Update()
     {
-        oilScoreText.text = "Масло: " + Oilscore;
-        chocoScoreText.text = "Шоколад: " + chocoScore;
+        oilScoreText.text = Oilscore.ToString();
+        chocoScoreText.text = chocoScore.ToString();
 
         if (Oilscore >= 10 && isFirstHint)
         {

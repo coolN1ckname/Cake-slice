@@ -21,7 +21,7 @@ public class StreakScript : MonoBehaviour
     
     public void Update()
     {
-        currentStreak.text = streak.ToString();
+        currentStreak.text = "Серия: " + streak.ToString();
         streakTimeText.text = streakTime.ToString();
 
         if (streak >= 1)
