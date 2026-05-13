@@ -1,40 +1,50 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToItemsButton : MonoBehaviour
+public class ToItemsToggle : MonoBehaviour
 {
-    public Button toItemsButton;
-    public Button backButton;
+    public Toggle sweetsToggle;  // Toggle для раздела "Сладости"
+    public Toggle itemsToggle;   // Toggle для раздела "Товары"
     public GameObject sweets;
     public GameObject items;
 
     public AudioClip buttonSound;
     private AudioSource audioSource;
 
-
     public void Awake()
     {
-        backButton.interactable = false;
         audioSource = Camera.main.GetComponentInChildren<AudioSource>();
-
-    }
-    public void ToItemsButtonClick()
-    {   
-        sweets.SetActive(false);
-        items.SetActive(true);
-        toItemsButton.interactable = false;
-        backButton.interactable = true;
         
-        audioSource.PlayOneShot(buttonSound);
+        sweetsToggle.onValueChanged.AddListener(OnSweetsToggleChanged);
+        itemsToggle.onValueChanged.AddListener(OnItemsToggleChanged);
+
+        sweets.SetActive(true);
+        items.SetActive(false);
     }
 
-    public void ToSweetsButtonClick()
+    private void OnSweetsToggleChanged(bool isOn)
     {
-        items.SetActive(false);
-        sweets.SetActive(true);
-        backButton.interactable = false;
-        toItemsButton.interactable = true;
+        if (isOn)
+        {
+            sweets.SetActive(true);
+            items.SetActive(false);
+            
+            if (itemsToggle.isOn) itemsToggle.isOn = false;
+            
+            audioSource.PlayOneShot(buttonSound);
+        }
+    }
 
-        audioSource.PlayOneShot(buttonSound);
+    private void OnItemsToggleChanged(bool isOn)
+    {
+        if (isOn)
+        {
+            items.SetActive(true);
+            sweets.SetActive(false);
+            
+            if (sweetsToggle.isOn) sweetsToggle.isOn = false;
+            
+            audioSource.PlayOneShot(buttonSound);
+        }
     }
 }

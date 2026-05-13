@@ -34,11 +34,11 @@ public class ShopItemButton : MonoBehaviour
         int chocoScore = ScoreScript.Instance.chocoScore;
         if (!isBought && oilPriceTag != null) 
         {
-            oilPriceTag.text = oilScore + " / " + price;
+            oilPriceTag.text = oilScore + "/" + price;
         }
         else if (!isBought && chocoPriceTag != null)
         {
-            chocoPriceTag.text = chocoScore + " / " + price;
+            chocoPriceTag.text = chocoScore + "/" + price;
         }
         else if (isBought && oilPriceTag != null)
         {
